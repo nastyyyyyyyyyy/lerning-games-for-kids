@@ -1,0 +1,92 @@
+
+.games_container{
+    display: flex;
+    justify-content: space-around;
+    gap: 35px;
+    
+
+}
+.game_container{
+    display: flex;
+    flex-direction: column;
+    
+}
+img{
+  
+  display: flow-root;
+  width: 100px;
+  height: 100px;
+}
+.ml_200{
+  margin-left: 200px;
+}
+.shadow{
+  box-shadow: 5px 5px 5px 5px rgba(253, 154, 68, 0.417);
+}
+.mt_200{
+  margin-top: 200px;
+}
+.center{
+  text-align: center;
+}
+
+
+
+
+
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #f0f5f9; /* Geyser */
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+    font-family: 'Young Serif', serif;
+    background-image: url(./assets/cute-rainbow-frame-vector-beige-background-cute-hand-drawn-style_53876-126112.avif);
+  }
+
+  .mt_100{
+    margin-top: 100px;
+  }
+
+  h1 {
+    color: #DA3A37; /* Belize Hole */
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    display: block;
+    margin: 20px auto;
+    max-width: 300px;
+  }
+
+  /* a {
+    text-decoration: none;
+    padding: 15px 20px;
+    background-color: #DA3A37; 
+    color: #ecf0f1; 
+    border-radius: 8px;
+    font-weight: bold;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+  } */
+
+  /* a:hover {
+    background-color: #2c3e50; 
+  } */
+
+  .icon {
+    margin-right: 5px;
+  }
+
+  .button__1{
+    background-color: #DC3E3A;
+  }

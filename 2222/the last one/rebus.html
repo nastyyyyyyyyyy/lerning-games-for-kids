@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-image: url(./assets/index1finel.avif);
+    }
+
+    h1 {
+      color: #3498db;
+      margin-top: 20px;
+    }
+
+    #content {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #3498db; /* Blue color for buttons */
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #2980b9; /* Darker blue for hover effect */
+    }
+
+    #image-container {
+      margin-top: 20px;
+    }
+
+    img {
+      max-width: 90%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    #answer-input {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 60%;
+      box-sizing: border-box;
+    }
+
+    #color-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+  </style>
+  <title>Жұмбақ ойынына қош келдіңіз</title>
+</head>
+<body>
+  <button id="color-button" onclick="changeBackgroundColor()">Фонды қалағаныңызша өзгертіңіз</button>
+  <h1>Жұмбақ ойынына қош келдіңіз</h1>
+  <div id="content">
+    <button onclick="startGame()">Ойынды бастаңыз</button>
+    <button onclick="guessRiddle()">Жауабыңызды тексеріңіз</button>
+    <button onclick="nextImage()">Келесі сурет</button>
+    <button onclick="showAnswer()">Жауапты көрсету</button>
+    <div id="image-container"></div>
+    <input type="text" id="answer-input" placeholder="Осы жерге жауапты енгізіңіз">
+  </div>
+
+  <script>
+    const riddles = [
+      { image: 'rebus-1.jpg', answer: 'қасқыр' },
+      { image: 'rebus-4.jpg', answer: 'домбыра' },
+      { image: 'rebus-5.jpg', answer: 'сәлем' },
+      { image: 'rebus-6.jpg', answer: 'алға' },
+      { image: 'rebus-8.jpg', answer: 'банан' },
+      { image: 'rebus-9.jpg', answer: 'қарға' },
+      { image: 'rebus-11.jpg', answer: 'күзет' },
+      { image: 'rebus-13.jpg', answer: 'қалам' },
+      { image: 'rebus-16.jpg', answer: 'ойын' },
+    ];
+
+    let currentIndex = -1;
+    let gameStarted = false;
+
+    function startGame() {
+      gameStarted = true;
+      nextImage();
+    }
+
+    function guessRiddle() {
+      if (!gameStarted) {
+        alert('Ойынды бастаңыз！');
+        return;
+      }
+
+      const userAnswer = document.getElementById('answer-input').value.toLowerCase();
+      if (userAnswer === riddles[currentIndex].answer) {
+        alert('Молодец дұрыс');
+        nextImage();
+      } else {
+        alert('Қателестіңіз тағыда сынап көріңіз！');
+      }
+    }
+
+    function nextImage() {
+      if (!gameStarted) {
+        alert('Ойынды бастаңыз！！');
+        return;
+      }
+
+      currentIndex = (currentIndex + 1) % riddles.length;
+      displayImage(riddles[currentIndex].image);
+      document.getElementById('answer-input').value = '';
+    }
+
+    function showAnswer() {
+      if (!gameStarted) {
+        alert('Ойынды бастаңыз！！');
+        return;
+      }
+
+      alert(`Жауапты білу көрсетіледі: ${riddles[currentIndex].answer}`);
+    }
+
+    function displayImage(imagePath) {
+      const imageContainer = document.getElementById('image-container');
+      imageContainer.innerHTML = '';
+      const image = document.createElement('img');
+      image.src = imagePath;
+      imageContainer.appendChild(image);
+    }
+
+    function changeBackgroundColor() {
+      const body = document.body;
+      const randomColor = getRandomColor();
+      body.style.backgroundColor = randomColor;
+    }
+
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+  </script>
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      display: block;
+      margin: 20px auto;
+      max-width: 300px;
+    }
+
+    a {
+      text-decoration: none;
+      padding: 10px 15px; /* Adjust padding */
+      background-color: #2d3436;
+      color: white;
+      border-radius: 8px;
+      font-weight: bold;
+      display: inline-block;
+      width: auto; /* Allow the width to adjust based on content */
+      box-sizing: border-box;
+      transition: background-color 0.3s;
+      position: fixed;
+      bottom: 10px; /* Adjust bottom position */
+      left: 10px; /* Adjust left position */
+      margin: 0;
+      font-size: 14px; /* Adjust font size */
+    }
+
+    a:hover {
+      background-color: #0370a7;
+    }
+
+    .icon {
+      margin-right: 5px;
+    }
+  </style>
+
+  <ul>
+    <li><a href="superindex.html"><i class="icon fas fa-gamepad"></i> қайту</a></li>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #1a1a1a; /* Dark Gray */
+}
+
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    background: #2c3e50; /* Midnight Blue */
+    padding: 40px 60px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    font-size: 3em;
+    color: #ecf0f1; /* Clouds */
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.reset {
+    padding: 15px 20px;
+    color: #ecf0f1; /* Clouds */
+    background: #3498db; /* Belize Hole */
+    border: none;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.reset:hover {
+    color: #3498db; /* Belize Hole */
+    background: #ecf0f1; /* Clouds */
+}
+
+.game {
+    width: 440px;
+    height: 440px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    transform-style: preserve-3d;
+    perspective: 500px; 
+}
+
+.item {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    background: #ecf0f1;
+    transform: rotateY(180deg);
+    transition: 0.25s;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.item.boxOpen {
+    transform: rotateY(0deg);
+}
+
+.item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #3498db; /* Belize Hole */
+    transition: 0.25s;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+}
+
+.boxOpen:after, .boxMatch:after {
+    transform: rotateY(180deg);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: block;
+    margin: 20px auto;
+    max-width: 300px;
+}
+
+a {
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    display: inline-block;
+    width: auto;
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    margin: 0;
+    font-size: 14px;
+}
+
+a:hover {
+    background-color: #2980b9; /* Belize Hole - Darker Shade */
+}
+
+.icon {
+    margin-right: 5px;
+}

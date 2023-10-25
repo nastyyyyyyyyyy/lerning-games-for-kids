@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Угадай цвет</title>
+    <style>
+        img{
+            height: 100%;
+            width: 100%;
+        }
+        body {
+            background-image: url(./assets/index1finel.avif);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #63aece; /* Cloud Burst */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+       
+
+        h1 {
+            color: #2d3436;
+        }
+
+        #color-box {
+            width: 200px;
+            height: 200px;
+            margin: 30px auto;
+            border: 2px solid #5595a6;
+        }
+
+        #message {
+            font-size: 18px;
+            margin-top: 10px;
+            color: #2d3436;
+        }
+
+        .color-button {
+            background-color: #a5a6ff;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .color-button:hover {
+            background-color: #6ba7c1; /* Silver Sand */
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: block;
+            margin: 20px auto;
+            max-width: 300px;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 10px 15px;
+            background-color: #2d3436;
+            color: white;
+            border-radius: 8px;
+            font-weight: bold;
+            display: inline-block;
+            width: auto;
+            box-sizing: border-box;
+            transition: background-color 0.3s;
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        a:hover {
+            background-color: #7baafa; /* Steel Blue */
+        }
+
+        .icon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Түсін тап</h1>
+    </header>
+
+    <div id="color-box"></div>
+    
+    <div id="message"></div>
+    <div>
+        <h2>Бұл қандай түс? </h2>
+        <button class="color-button" onclick="checkColor('red')">Қызыл</button>
+        <button class="color-button" onclick="checkColor('blue')">Көк</button>
+        <button class="color-button" onclick="checkColor('green')">Жасыл</button>
+        <button class="color-button" onclick="checkColor('yellow')">Сары</button>
+        <button class="color-button" onclick="checkColor('purple')">Күлгін</button>
+        <button class="color-button" onclick="checkColor('orange')">Қызғылт сары</button>
+    </div>
+
+    <ul>
+        <li><a href="superindex.html"><i class="icon fas fa-gamepad"></i> қайту</a></li>
+    </ul>
+
+    <script>
+        const colors = ["red", "blue", "green", "yellow", "purple", "orange"];
+        function getRandomColor() {
+            const randomIndex = Math.floor(Math.random() * colors.length);
+            return colors[randomIndex];
+        }
+
+        let targetColor = getRandomColor();
+
+        function updateColor() {
+            document.getElementById("color-box").style.backgroundColor = targetColor;
+        }
+
+        function checkColor(guess) {
+            if (guess === targetColor) {
+                document.getElementById("message").textContent = "Дұрыс!";
+                targetColor = getRandomColor();
+                updateColor();
+            } else {
+                document.getElementById("message").textContent = "Тағы да қайталап көріңіз.";
+            }
+        }
+
+        updateColor();
+    </script>
+</body>
+</html>

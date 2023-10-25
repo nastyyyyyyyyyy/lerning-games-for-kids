@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Counting</title>
+		<meta charset="utf-8">
+		<link rel="icon" href="favicon.ico" type="image/x-icon" />
+			<style>
+			body {
+				text-align:center;
+				font-family:arial;
+				background-color:white;
+				background-image: url(./assets/img3.avif);
+				background-position: center center;
+				background-size: cover;
+				background-repeat: no-repeat;
+			}
+		.ul_1 {
+  	 list-style-type: none;
+ 	  padding: 0;
+	}
+
+	.li_1 {
+   display: block;
+   margin: 20px auto;
+   max-width: 300px;
+	}
+
+	.a_1 {
+   text-decoration: none;
+   padding: 10px 15px;
+   background-color: #2d3436;
+   color: white;
+   border-radius: 8px;
+   font-weight: bold;
+   display: inline-block;
+   width: auto;
+   box-sizing: border-box;
+   transition: background-color 0.3s;
+   position: fixed;
+   bottom: 10px;
+   left: 10px;
+   margin: 0;
+   font-size: 14px;
+	}
+
+	.a_1:hover {
+   background-color: #7baafa; /* Steel Blue */
+	}
+				
+			
+			ul {
+				margin:0 0 7vh 0;
+				padding:0;
+				display:flex;
+				flex-wrap:wrap;
+				justify-content:center;
+			}
+			li {
+				cursor:pointer;
+				display:flex;
+				align-items: center;
+				justify-content: center;
+				width: 13vh;
+				height:13vh;
+				margin: 1.5vh;
+				font-size: 9vh;
+				border-radius:4px;
+				background-color:#E9E9E9;
+				user-select:none;
+				-webkit-tap-highlight-color: transparent;
+			}
+			li:active {
+				background-color:#F1F1F1;
+			}
+			table {
+				margin:0 auto 3vh auto;
+				width:1000px;
+			}
+			td {
+				font-size:5vh;
+				height:9vh;
+				width:20%
+			}
+			div {display:inline-block;margin:0 5vw}
+			td, input, label {cursor:pointer}
+			input[type='range'] {width:40vw}
+			@media (max-width: 860px) {
+				table {width:100%;height:auto}
+				li {margin:1vh;width:19vh;height:19vh;font-size:8vh;}
+			}
+			@media (max-width: 480px) {
+				li {margin:0.5vh;width:10vh;height:10vh;font-size:5vh;}
+			}
+		</style>
+	</head>
+	<body ontouchstart>
+		<table border='0' cellspacing='0'>
+			<tr>
+				<td> </td><td> </td><td> </td><td> </td><td> </td>
+			</tr>
+			<tr>
+				<td> </td><td> </td><td> </td><td> </td><td> </td>
+			</tr>
+			<tr>
+				<td> </td><td> </td><td> </td><td> </td><td> </td>
+			</tr>
+		</table>
+		<ul></ul>
+		<div>
+			<input type="checkbox" onchange="start()" /><br /><label>Random Off</label>
+		</div>
+		<div>
+			<input type="range" min="5" max="15" value="10" onchange="start()" /><br /><label onclick="reset()">Length</label>
+		</div>
+		<ul class="ul_1">
+			<li class="li_1"><a href="superindex.html" class="a_1"><i class="icon fas fa-gamepad"></i> қайту</a></li>
+		 </ul>
+	</body>
+</html>
+<script>
+	const
+		ul = document.getElementsByTagName('ul')[0],
+		td = document.getElementsByTagName('td'),
+		random = document.getElementsByTagName('input')[0],
+		randomLabel = document.getElementsByTagName('label')[0],
+		rangeLabel = document.getElementsByTagName('label')[1],
+		range = document.getElementsByTagName('input')[1],
+		animals = {
+			'poodles'	:'&#128041',	'buffalos'	:'&#128003;',	'dogs'		:'&#128021',
+			'monkeys'	:'&#128018',	'cats'		:'&#128008',	'tigers'	:'&#128005',
+			'horses'	:'&#128014',	'cows'		:'&#128004',	'pigs'		:'&#128022',
+			'rams'		:'&#128015',	'goats'		:'&#128016',	'camels'	:'&#128042',
+			'elephants'	:'&#128024',	'mice'		:'&#128001',	'rabbits'	:'&#128007',
+			'roosters'	:'&#128019',	'birds'		:'&#128038',	'crocodiles':'&#128010',
+			'turtles'	:'&#128034',	'snakes'	:'&#128013',	'dragons'	:'&#128009',
+			'whales'	:'&#128051',	'dolphins'	:'&#128044',	'fish'		:'&#128031',
+			'octopuses'	:'&#128025',	'snails'	:'&#128012',	'bugs'		:'&#128027',
+			'ants'		:'&#128028',	'honeybees'	:'&#128029',	'beetles'	:'&#128030',
+		},
+		name = Object.keys(animals);
+
+		let timer, prevAnimal, prevCount,
+		congratulation = () => {
+			timer = setTimeout(function(){
+				document.body.style.backgroundColor = document.body.style.backgroundColor=="white"?"whitesmoke":"white";
+				congratulation();
+			},200);
+		},
+		speak = (txt) => {
+			var word = new SpeechSynthesisUtterance(txt)
+			word.lang = 'en';
+			word.rate = 1;
+			speechSynthesis.speak(word);
+		},
+		reset = () => {
+			range.value = 10;
+			start();
+		},
+		start = () => {
+			var
+				chosenAnimal = name[name.length * Math.random() << 0],
+				animal = animals[chosenAnimal],
+				randomCountAnim = Math.floor(Math.random() * parseInt(range.value))+1,
+				keypad = [...Array(parseInt(range.value)+1).keys()].splice(1);
+				pos = [],
+				padLen = parseInt(range.value)+1;
+				num = [...Array(16).keys()].splice(1);
+
+			if(prevAnimal==chosenAnimal) chosenAnimal = name[name.length * Math.random() << 0];
+			if(prevCount==randomCountAnim) randomCountAnim = Math.floor(Math.random() * parseInt(range.value))+1;
+			prevAnimal = chosenAnimal;
+			prevCount = randomCountAnim;
+
+			speak('how many '+chosenAnimal+'?');
+
+			for (i = num.length; i; i--) {
+				var j = Math.floor(Math.random() * i);
+				[num[i - 1], num[j]] = [num[j], num[i - 1]];
+			}
+
+			for(i=0;i<td.length;i++){
+				td[i].innerText = '';
+			}
+			pos = num.slice(0,randomCountAnim);
+			for(i=0;i<randomCountAnim;i++){
+				td[pos[i]-1].innerHTML = animal;
+			}
+
+			ul.innerHTML = '';
+			if(random.checked) (keypad = keypad.sort(()=>Math.random()-0.5));
+			for(i=0;i<(padLen-1);i++){
+				var el = document.createElement('li');
+				el.innerText = keypad[i];
+				el.onclick = function(){
+					speak(this.innerText);
+					if(randomCountAnim==this.innerText){
+						speak('excellent');
+						congratulation();
+						setTimeout(function(){
+							clearTimeout(timer);
+							document.body.style.backgroundColor = "white";
+							start();
+						},2000);
+					}
+					else {
+						speak('try again');
+					}
+				}
+				ul.appendChild(el);
+			}
+
+			randomLabel.innerText = 'Random '+(random.checked?'On':'Off');
+		};
+		range.onmouseout = range.ontouchend = function(){
+			rangeLabel.innerText = "Length";
+		}
+		range.onmousemove = range.ontouchmove = function(){
+			rangeLabel.innerText = this.value;
+		}
+		start();
+</script>
